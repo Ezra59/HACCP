@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutModifierUtilisateur"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F2F2F2"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/textRetour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retour"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/textTitre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modifier un utilisateur"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Liste des utilisateurs"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:layout_marginBottom="8dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerUtilisateurs"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="#FFFFFF"
+        android:padding="8dp"
+        android:layout_marginBottom="20dp" />
+
+    <EditText
+        android:id="@+id/editPrenom"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="Prénom"
+        android:background="#FFFFFF"
+        android:padding="14dp"
+        android:textSize="16sp"
+        android:layout_marginBottom="12dp" />
+
+    <EditText
+        android:id="@+id/editPin"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="Code PIN"
+        android:inputType="numberPassword"
+        android:maxLength="6"
+        android:background="#FFFFFF"
+        android:padding="14dp"
+        android:textSize="16sp"
+        android:layout_marginBottom="12dp" />
+
+    <Spinner
+        android:id="@+id/spinnerRole"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#FFFFFF"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp" />
+
+    <Button
+        android:id="@+id/buttonModifier"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Modifier"
+        android:textSize="17sp" />
+
+</LinearLayout>

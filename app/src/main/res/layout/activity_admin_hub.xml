@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutAdminHub"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F2F2F2"
+    android:padding="24dp">
+
+    <Button
+        android:id="@+id/buttonRetourAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retour"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Administration"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/utilisateurAdminHub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Connecté : utilisateur"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:padding="8dp"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/gestionUtilisateur"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:text="Gestion des utilisateurs"
+        android:textSize="20sp"
+        android:textColor="#222222"
+        android:background="#FFFFFF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginBottom="14dp" />
+
+    <TextView
+        android:id="@+id/btngestionRoutine"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:text="Gestion des routines"
+        android:textSize="20sp"
+        android:textColor="#222222"
+        android:background="#FFFFFF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginBottom="14dp" />
+
+    <TextView
+        android:id="@+id/btngestionProduit"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:text="Gestion des produits"
+        android:textSize="20sp"
+        android:textColor="#222222"
+        android:background="#FFFFFF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp" />
+
+</LinearLayout>

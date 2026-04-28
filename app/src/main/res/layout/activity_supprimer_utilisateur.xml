@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutSupprimerUtilisateur"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F2F2F2"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/textRetour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retour"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/textTitre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Supprimer un utilisateur"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Liste des utilisateurs"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:layout_marginBottom="8dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerUtilisateurs"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="#FFFFFF"
+        android:padding="8dp"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/textNomUtilisateur"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:text="Veuillez sélectionner un utilisateur"
+        android:textSize="17sp"
+        android:textColor="#222222"
+        android:background="#FFFFFF"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:id="@+id/textRoleUtilisateur"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:text=""
+        android:textSize="17sp"
+        android:textColor="#555555"
+        android:background="#FFFFFF"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginBottom="24dp" />
+
+    <Button
+        android:id="@+id/buttonSupprimerUtilisateur"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Supprimer"
+        android:textSize="17sp" />
+
+</LinearLayout>
