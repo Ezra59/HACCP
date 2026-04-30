@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutGestionProduits"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F2F2F2"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/textRetour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retour"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/textTitreGestionProduits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Gestion des produits"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:id="@+id/btnDatesPeremption"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:text="Définir les dates de péremption"
+        android:textSize="20sp"
+        android:textColor="#222222"
+        android:background="#FFFFFF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginBottom="14dp" />
+
+    <TextView
+        android:id="@+id/btnAjouterCategorie"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:text="Ajouter une catégorie"
+        android:textSize="20sp"
+        android:textColor="#222222"
+        android:background="#FFFFFF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginBottom="14dp" />
+
+    <TextView
+        android:id="@+id/btnModifierCategorie"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:text="Modifier une catégorie"
+        android:textSize="20sp"
+        android:textColor="#222222"
+        android:background="#FFFFFF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginBottom="14dp" />
+
+    <TextView
+        android:id="@+id/btnSupprimerCategorie"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:text="Supprimer une catégorie"
+        android:textSize="20sp"
+        android:textColor="#8A1F1F"
+        android:background="#FFFFFF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginBottom="14dp" />
+
+    <TextView
+        android:id="@+id/btnConditionsStockage"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:text="Conditions de stockage"
+        android:textSize="20sp"
+        android:textColor="#222222"
+        android:background="#FFFFFF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginBottom="14dp"/>
+
+    <TextView
+        android:id="@+id/btnDeplacerProduitsCategorie"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center_vertical"
+        android:text="Déplacer les produits d'une catégorie"
+        android:textSize="20sp"
+        android:textColor="#222222"
+        android:background="#FFFFFF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginBottom="14dp" />
+
+</LinearLayout>

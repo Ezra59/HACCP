@@ -3,6 +3,7 @@ package com.example.haccp.ui
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,17 +27,7 @@ class HistoriqueActivity : AppCompatActivity() {
     private lateinit var boutonRetour: TextView
     private lateinit var database: AppDatabase
 
-    private val categories = listOf(
-        "Bof",
-        "Charcuterie",
-        "Dessert",
-        "Épicerie",
-        "Féculent",
-        "Légumes",
-        "Plat cuisiné",
-        "Sauce",
-        "Surgelé"
-    )
+    private lateinit var categorieAdapter: CategorieAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +38,7 @@ class HistoriqueActivity : AppCompatActivity() {
         initialiserListeners()
         initialiserCategories()
         initialiserProduits()
+        chargerCategories()
     }
 
     /**
@@ -71,8 +63,6 @@ class HistoriqueActivity : AppCompatActivity() {
 
     /**
      * Initialise les interactions utilisateur.
-     *
-     * Permet notamment de revenir à l'écran précédent.
      */
     private fun initialiserListeners() {
         boutonRetour.setOnClickListener {
@@ -82,17 +72,40 @@ class HistoriqueActivity : AppCompatActivity() {
 
     /**
      * Initialise le RecyclerView des catégories.
-     *
-     * Lorsqu'une catégorie est sélectionnée, les produits correspondants sont chargés.
      */
     private fun initialiserCategories() {
-        recyclerCategories.layoutManager = GridLayoutManager(this, 9)
+        recyclerCategories.layoutManager = GridLayoutManager(this, 3)
+    }
 
-        val adapter = CategorieAdapter(categories) { categorie ->
-            chargerProduitsParCategorie(categorie)
-        }
+    /**
+     * Charge les catégories enregistrées en base de données
+     * et les affiche dans le RecyclerView.
+     */
+    private fun chargerCategories() {
+        Thread {
+            try {
+                val categories = database.categorieDao()
+                    .getToutesLesCategories()
+                    .map { it.nom }
 
-        recyclerCategories.adapter = adapter
+                runOnUiThread {
+                    categorieAdapter = CategorieAdapter(categories) { categorie ->
+                        chargerProduitsParCategorie(categorie)
+                    }
+
+                    recyclerCategories.adapter = categorieAdapter
+                }
+
+            } catch (e: Exception) {
+                runOnUiThread {
+                    Toast.makeText(
+                        this,
+                        "Erreur chargement catégories : ${e.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }.start()
     }
 
     /**
@@ -104,11 +117,6 @@ class HistoriqueActivity : AppCompatActivity() {
 
     /**
      * Charge les produits correspondant à une catégorie donnée.
-     *
-     * Les produits récupérés sont affichés dans le RecyclerView principal.
-     * Un clic sur un produit ouvre l'écran de détail.
-     *
-     * @param categorie la catégorie sélectionnée
      */
     private fun chargerProduitsParCategorie(categorie: String) {
         Thread {
@@ -135,17 +143,6 @@ class HistoriqueActivity : AppCompatActivity() {
 
     /**
      * Ouvre l'écran de détail d'un produit.
-     *
-     * Les informations du produit sont transmises via l'Intent.
-     *
-     * @param nom le nom du produit
-     * @param lot le numéro de lot
-     * @param date la date du produit
-     * @param image l'URI de l'image
-     * @param commentaire le commentaire associé au produit
-     * @param dateReception la date de réception
-     * @param enregistrePar le nom de l'utilisateur ayant enregistré le produit
-     * @param categorie la catégorie du produit
      */
     private fun ouvrirDetailProduit(
         nom: String?,

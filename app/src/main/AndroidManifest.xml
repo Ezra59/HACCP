@@ -31,6 +31,12 @@
         <activity android:name=".ui.AjouterUtilisateurActivity" />
         <activity android:name=".ui.SupprimerUtilisateurActivity" />
         <activity android:name=".ui.ModifierUtilisateurActivity" />
+        <activity android:name=".ui.GestionProduitsActivity" />
+        <activity android:name=".ui.AjouterCategorieActivity" />
+        <activity android:name=".ui.SupprimerCategorieActivity" />
+        <activity android:name=".ui.ModifierCategorieActivity" />
+        <activity android:name=".ui.DeplacerProduitsCategorieActivity" />
+        <activity android:name=".ui.GestionProduitsReferenceActivity" />
 
 
 

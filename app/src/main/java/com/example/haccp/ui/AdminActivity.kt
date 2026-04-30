@@ -150,10 +150,9 @@ class AdminActivity : AppCompatActivity() {
      * Cette Activity pourra être implémentée plus tard.
      */
     private fun ouvrirGestionProduits() {
-        Toast.makeText(this, "Gestion des produits à venir", Toast.LENGTH_SHORT).show()
-
-        // Exemple futur :
-        // val intent = Intent(this, GestionProduitsActivity::class.java)
-        // startActivity(intent)
+         val intent = Intent(this, GestionProduitsActivity::class.java)
+      startActivity(intent)
     }
+
+
 }

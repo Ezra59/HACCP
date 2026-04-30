@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layoutHistorique"
+    android:id="@+id/layoutDeplacerProduitsCategorie"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -17,49 +17,57 @@
         android:padding="8dp" />
 
     <TextView
-        android:id="@+id/textTitreHistorique"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Historique"
+        android:text="Déplacer les produits"
         android:textSize="26sp"
         android:textStyle="bold"
         android:textColor="#222222"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="32dp" />
 
     <TextView
-        android:id="@+id/textCategories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Catégories"
+        android:text="Catégorie source"
         android:textSize="18sp"
         android:textColor="#333333"
         android:layout_marginBottom="8dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerCategories"
+    <Spinner
+        android:id="@+id/spinnerCategorieSource"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="70dp"
         android:background="#FFFFFF"
-        android:padding="12dp"
-        android:clipToPadding="false"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:layout_marginBottom="20dp" />
 
     <TextView
-        android:id="@+id/textProduits"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Produits"
+        android:text="Catégorie de destination"
         android:textSize="18sp"
         android:textColor="#333333"
         android:layout_marginBottom="8dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/historiqueProduit"
+    <Spinner
+        android:id="@+id/spinnerCategorieDestination"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="70dp"
         android:background="#FFFFFF"
-        android:padding="8dp" />
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/btnDeplacer"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Déplacer les produits"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:background="#FFFFFF" />
 
 </LinearLayout>

@@ -55,18 +55,7 @@ class ReceptionActivity : AppCompatActivity() {
         val photoUri: String
     )
 
-    private val categories = listOf(
-        "Choisir une catégorie",
-        "Bof",
-        "Charcuterie",
-        "Dessert",
-        "Épicerie",
-        "Féculent",
-        "Légumes",
-        "Plat cuisiné",
-        "Sauce",
-        "Surgelé"
-    )
+
 
     private val prendrePhoto =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
@@ -115,14 +104,40 @@ class ReceptionActivity : AppCompatActivity() {
         texteRetour = findViewById(R.id.textRetour)
     }
 
+    /**
+     * Initialise le Spinner avec les catégories enregistrées en base de données.
+     */
     private fun initialiserSpinner() {
-        val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_item,
-            categories
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerCategorie.adapter = adapter
+        Thread {
+            try {
+                val categories = database.categorieDao()
+                    .getToutesLesCategories()
+                    .map { it.nom }
+                    .toMutableList()
+
+                categories.add(0, "Choisir une catégorie")
+
+                runOnUiThread {
+                    val adapter = ArrayAdapter(
+                        this,
+                        android.R.layout.simple_spinner_item,
+                        categories
+                    )
+
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    spinnerCategorie.adapter = adapter
+                }
+
+            } catch (e: Exception) {
+                runOnUiThread {
+                    Toast.makeText(
+                        this,
+                        "Erreur chargement catégories : ${e.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }.start()
     }
 
     private fun initialiserListeners() {

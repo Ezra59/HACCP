@@ -21,4 +21,9 @@ public interface ProduitDao {
 
     @Query("SELECT * FROM produits WHERE categorie = :categorie")
     List<ProduitEntity> getProduitsParCategorie(String categorie);
+
+    @Query("UPDATE produits SET categorie = :nouveauNom WHERE categorie = :ancienNom")
+    void modifierCategorieDesProduits(String ancienNom, String nouveauNom);
+
+
 }
