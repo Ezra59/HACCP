@@ -125,6 +125,18 @@ class GestionProduitsReferenceActivity : AppCompatActivity() {
 
     private fun chargerProduits() {
         val produits = db.produitReferenceDao().getTousLesProduitsReference()
-        recyclerProduits.adapter = ProduitReferenceAdapter(produits)
+
+        recyclerProduits.adapter = ProduitReferenceAdapter(produits) { produit ->
+            editNom.setText(produit.nom)
+            editDuree.setText(produit.dureeApresOuverture.toString())
+
+            val adapter = spinnerCategorie.adapter
+            for (i in 0 until adapter.count) {
+                if (adapter.getItem(i).toString() == produit.categorie) {
+                    spinnerCategorie.setSelection(i)
+                    break
+                }
+            }
+        }
     }
 }

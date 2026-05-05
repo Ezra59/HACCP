@@ -9,31 +9,37 @@ import com.example.haccp.Data.ProduitReferenceEntity
 import com.example.haccp.R
 
 class ProduitReferenceAdapter(
-    private val produits: List<ProduitReferenceEntity>
-) : RecyclerView.Adapter<ProduitReferenceAdapter.ProduitReferenceViewHolder>() {
+    private var produits: List<ProduitReferenceEntity>,
+    private val onClick: (ProduitReferenceEntity) -> Unit
+) : RecyclerView.Adapter<ProduitReferenceAdapter.ViewHolder>() {
 
-    class ProduitReferenceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textNomProduit: TextView = itemView.findViewById(R.id.textNomProduit)
-        val textCategorieProduit: TextView = itemView.findViewById(R.id.textCategorieProduit)
-        val textDureeProduit: TextView = itemView.findViewById(R.id.textDureeProduit)
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val nom: TextView = itemView.findViewById(R.id.textNomProduitRef)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProduitReferenceViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_produit_reference, parent, false)
-
-        return ProduitReferenceViewHolder(view)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ProduitReferenceViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val produit = produits[position]
 
-        holder.textNomProduit.text = produit.nom
-        holder.textCategorieProduit.text = "Catégorie : ${produit.categorie}"
-        holder.textDureeProduit.text = "Durée après ouverture : ${produit.dureeApresOuverture} jour(s)"
+        holder.nom.text = "${produit.nom} - ${produit.dureeApresOuverture} jour(s)"
+
+        holder.itemView.setOnClickListener {
+            onClick(produit)
+        }
     }
 
-    override fun getItemCount(): Int {
-        return produits.size
+    override fun getItemCount(): Int = produits.size
+
+    /**
+     * Permet de mettre à jour la liste dynamiquement
+     */
+    fun updateList(nouvelleListe: List<ProduitReferenceEntity>) {
+        produits = nouvelleListe
+        notifyDataSetChanged()
     }
 }

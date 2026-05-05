@@ -3,7 +3,7 @@ package com.example.haccp.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.haccp.Data.UtilisateurEntity
 import com.example.haccp.R
@@ -14,7 +14,7 @@ class UtilisateurAdapter(
 ) : RecyclerView.Adapter<UtilisateurAdapter.UtilisateurViewHolder>() {
 
     class UtilisateurViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val buttonUtilisateur: Button = itemView.findViewById(R.id.buttonUtilisateur)
+        val textUtilisateur: TextView = itemView.findViewById(R.id.textUtilisateur)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UtilisateurViewHolder {
@@ -26,16 +26,11 @@ class UtilisateurAdapter(
     override fun onBindViewHolder(holder: UtilisateurViewHolder, position: Int) {
         val utilisateur = listeUtilisateurs[position]
 
-        holder.buttonUtilisateur.text = utilisateur.prenom
+        holder.textUtilisateur.text = utilisateur.prenom
 
-        // 👉 UN SEUL POINT DE CLIC pour éviter les conflits
+        // 👉 toute la ligne est cliquable
         holder.itemView.setOnClickListener {
             onUtilisateurClick(utilisateur)
-        }
-
-        // 👉 On force le bouton à déléguer le clic à la ligne
-        holder.buttonUtilisateur.setOnClickListener {
-            holder.itemView.performClick()
         }
     }
 

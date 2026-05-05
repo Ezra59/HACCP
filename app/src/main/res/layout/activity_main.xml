@@ -2,13 +2,19 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2">
+    android:background="#F2F2F2"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxWidth="700dp"
+        android:layout_gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="32dp">
 
         <TextView
             android:id="@+id/textRetour"
@@ -17,16 +23,17 @@
             android:text="Retour"
             android:textSize="18sp"
             android:textColor="#333333"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:layout_marginBottom="8dp" />
 
         <TextView
+            android:id="@+id/textTitreReception"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Réception produit"
             android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="#222222"
-            android:layout_marginTop="16dp"
             android:layout_marginBottom="24dp" />
 
         <ImageView
@@ -98,14 +105,13 @@
             android:id="@+id/testocr"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:text=""
-            android:textSize="14sp"
-            android:textColor="#555555"
+            android:layout_marginBottom="20dp"
             android:background="#FFFFFF"
             android:padding="12dp"
-            android:layout_marginBottom="20dp" />
+            android:text=""
+            android:textColor="#555555"
+            android:textSize="14sp" />
 
-        <!-- Séparateur -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -113,7 +119,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="12dp"/>
 
-        <!-- Bouton principal -->
         <Button
             android:id="@+id/ButtonAjouter"
             android:layout_width="match_parent"
