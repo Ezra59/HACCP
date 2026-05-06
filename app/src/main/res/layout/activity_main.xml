@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2"
+    android:background="#FFF0D8"
     android:fillViewport="true">
 
     <LinearLayout
@@ -10,122 +10,185 @@
         android:layout_height="wrap_content"
         android:maxWidth="700dp"
         android:layout_gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:paddingTop="24dp"
-        android:paddingBottom="32dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textRetour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Retour"
-            android:textSize="18sp"
-            android:textColor="#333333"
-            android:padding="8dp"
-            android:layout_marginBottom="8dp" />
+        <!-- HEADER -->
 
-        <TextView
-            android:id="@+id/textTitreReception"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Réception produit"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:textColor="#222222"
-            android:layout_marginBottom="24dp" />
-
-        <ImageView
-            android:id="@+id/photoproduit"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:background="#FFFFFF"
-            android:scaleType="fitCenter"
-            android:layout_marginBottom="12dp" />
-
-        <Button
-            android:id="@+id/buttonphoto"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="Prendre une photo"
-            android:textSize="16sp"
-            android:layout_marginBottom="20dp" />
-
-        <EditText
-            android:id="@+id/NomProduit"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:hint="Nom du produit"
-            android:background="#FFFFFF"
-            android:padding="14dp"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp" />
-
-        <EditText
-            android:id="@+id/NumeroLot"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:hint="Numéro de lot"
-            android:background="#FFFFFF"
-            android:padding="14dp"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp" />
-
-        <EditText
-            android:id="@+id/DLC"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:hint="DLC / DDM"
-            android:background="#FFFFFF"
-            android:padding="14dp"
-            android:textSize="16sp"
-            android:layout_marginBottom="12dp" />
-
-        <Spinner
-            android:id="@+id/categorieProd"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:background="#FFFFFF"
-            android:padding="10dp"
-            android:layout_marginBottom="12dp" />
-
-        <EditText
-            android:id="@+id/commentaireAjouter"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="90dp"
-            android:hint="Commentaire"
-            android:gravity="top"
-            android:background="#FFFFFF"
-            android:padding="14dp"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp" />
+            android:background="#D90718"
+            android:gravity="center_vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
 
-        <TextView
-            android:id="@+id/testocr"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginBottom="20dp"
-            android:background="#FFFFFF"
-            android:padding="12dp"
-            android:text=""
-            android:textColor="#555555"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/textRetour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="← Retour"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFF0D8"
+                android:fontFamily="sans-serif-condensed" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#DDDDDD"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="12dp"/>
+            <TextView
+                android:id="@+id/textTitreReception"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Réception produit"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="#FFF0D8"
+                android:fontFamily="sans-serif-condensed" />
 
-        <Button
-            android:id="@+id/ButtonAjouter"
+        </LinearLayout>
+
+        <!-- CONTENU -->
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:text="Ajouter le produit"
-            android:textSize="18sp"
-            android:layout_marginBottom="24dp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="32dp">
+
+            <!-- IMAGE PRODUIT -->
+
+            <ImageView
+                android:id="@+id/photoproduit"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:background="#F7E4C6"
+                android:scaleType="fitCenter"
+                android:layout_marginBottom="18dp" />
+
+            <!-- BOUTON PHOTO -->
+
+            <Button
+                android:id="@+id/buttonphoto"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Prendre une photo"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFF0D8"
+                android:fontFamily="sans-serif-condensed"
+                android:backgroundTint="#008F6A"
+                android:layout_marginBottom="24dp" />
+
+            <!-- NOM PRODUIT -->
+
+            <EditText
+                android:id="@+id/NomProduit"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Nom du produit"
+                android:textColor="#D90718"
+                android:textColorHint="#D90718"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-condensed"
+                android:backgroundTint="#D90718"
+                android:padding="14dp"
+                android:layout_marginBottom="18dp" />
+
+            <!-- LOT -->
+
+            <EditText
+                android:id="@+id/NumeroLot"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Numéro de lot"
+                android:textColor="#D90718"
+                android:textColorHint="#D90718"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-condensed"
+                android:backgroundTint="#D90718"
+                android:padding="14dp"
+                android:layout_marginBottom="18dp" />
+
+            <!-- DLC -->
+
+            <EditText
+                android:id="@+id/DLC"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="DLC / DDM"
+                android:textColor="#D90718"
+                android:textColorHint="#D90718"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-condensed"
+                android:backgroundTint="#D90718"
+                android:padding="14dp"
+                android:layout_marginBottom="18dp" />
+
+            <!-- SPINNER -->
+
+            <Spinner
+                android:id="@+id/categorieProd"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#F7E4C6"
+                android:layout_marginBottom="18dp" />
+
+            <!-- COMMENTAIRE -->
+
+            <EditText
+                android:id="@+id/commentaireAjouter"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:hint="Commentaire"
+                android:gravity="top"
+                android:textColor="#D90718"
+                android:textColorHint="#D90718"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-condensed"
+                android:backgroundTint="#D90718"
+                android:padding="14dp"
+                android:layout_marginBottom="24dp" />
+
+            <!-- OCR -->
+
+            <TextView
+                android:id="@+id/testocr"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginBottom="24dp"
+                android:background="#F7E4C6"
+                android:padding="16dp"
+                android:text=""
+                android:textColor="#D90718"
+                android:textSize="15sp"
+                android:fontFamily="sans-serif-condensed" />
+
+            <!-- SEPARATEUR -->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#D90718"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp" />
+
+            <!-- BOUTON AJOUT -->
+
+            <Button
+                android:id="@+id/ButtonAjouter"
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:text="Ajouter le produit"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFF0D8"
+                android:fontFamily="sans-serif-condensed"
+                android:backgroundTint="#008F6A"
+                android:layout_marginBottom="24dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -2,6 +2,8 @@ package com.example.haccp.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +19,11 @@ class AccueilActivity : AppCompatActivity() {
     private lateinit var recyclerUtilisateurs: RecyclerView
     private lateinit var database: AppDatabase
 
+    private lateinit var progressTaches: ProgressBar
+    private lateinit var textPourcentageTaches: TextView
+    private lateinit var textProgressionTaches: TextView
+    private lateinit var textTachesRestantes: TextView
+
     /**
      * Initialise la base de données Room utilisée par l'application.
      */
@@ -25,20 +32,35 @@ class AccueilActivity : AppCompatActivity() {
             applicationContext,
             AppDatabase::class.java,
             "haccp_database"
-        ).fallbackToDestructiveMigration().build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    /**
+     * Initialise les vues du dashboard.
+     */
+    private fun initialiserVues() {
+        recyclerUtilisateurs = findViewById(R.id.recyclerUtilisateur)
+
+        progressTaches = findViewById(R.id.progressTaches)
+        textPourcentageTaches = findViewById(R.id.textPourcentageTaches)
+        textProgressionTaches = findViewById(R.id.textProgressionTaches)
+        textTachesRestantes = findViewById(R.id.textTachesRestantes)
+
+        recyclerUtilisateurs.layoutManager = LinearLayoutManager(this)
     }
 
     /**
      * Vérifie si au moins un utilisateur existe dans la base.
      *
-     * Si la table utilisateur est vide, cette méthode crée automatiquement
-     * un compte administrateur par défaut afin de garantir l'accès initial
-     * à l'application.
+     * Si aucun utilisateur n'existe, un administrateur par défaut est créé.
      */
     private fun initialiserUtilisateurSiBesoin() {
         val utilisateurs = database.utilisateurDao().getTousLesUtilisateurs()
 
         if (utilisateurs.isEmpty()) {
+
             val adminParDefaut = UtilisateurEntity(
                 "Admin",
                 "123456",
@@ -58,17 +80,19 @@ class AccueilActivity : AppCompatActivity() {
     }
 
     /**
-     * Affiche la liste des utilisateurs dans le RecyclerView.
-     *
-     * Lorsqu'un utilisateur est sélectionné, son prénom est transmis
-     * à LoginActivity pour poursuivre la connexion.
-     *
-     * @param utilisateurs la liste des utilisateurs à afficher
+     * Affiche les utilisateurs dans le RecyclerView.
      */
     private fun afficherUtilisateurs(utilisateurs: List<UtilisateurEntity>) {
+
         val adapter = UtilisateurAdapter(utilisateurs) { utilisateur ->
+
             val intent = Intent(this, LoginActivity::class.java)
-            intent.putExtra("prenom_selectionne", utilisateur.prenom)
+
+            intent.putExtra(
+                "prenom_selectionne",
+                utilisateur.prenom
+            )
+
             startActivity(intent)
         }
 
@@ -76,27 +100,64 @@ class AccueilActivity : AppCompatActivity() {
     }
 
     /**
-     * Initialise le RecyclerView affichant les utilisateurs.
+     * Affiche les statistiques des tâches HACCP.
      */
-    private fun initialiserRecyclerView() {
-        recyclerUtilisateurs = findViewById(R.id.recyclerUtilisateur)
-        recyclerUtilisateurs.layoutManager = LinearLayoutManager(this)
+    private fun afficherProgressionTaches() {
+
+        Thread {
+
+            val total = database.tacheDao().getAllTaches().size
+
+            // Temporaire : aucune tâche réalisée pour l'instant
+            val realisees = 0
+
+            val restantes = total - realisees
+
+            val pourcentage = if (total > 0) {
+                (realisees * 100) / total
+            } else {
+                0
+            }
+
+            runOnUiThread {
+
+                progressTaches.progress = pourcentage
+
+                textPourcentageTaches.text = "$pourcentage%"
+
+                textProgressionTaches.text =
+                    "$realisees / $total tâches"
+
+                textTachesRestantes.text =
+                    "$restantes restantes"
+            }
+
+        }.start()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_acceuil)
 
-        initialiserRecyclerView()
+        initialiserVues()
+
         initialiserBaseDeDonnees()
 
         Thread {
+
             initialiserUtilisateurSiBesoin()
-            val utilisateurs = database.utilisateurDao().getTousLesUtilisateurs()
+
+            val utilisateurs =
+                database.utilisateurDao().getTousLesUtilisateurs()
 
             runOnUiThread {
+
                 afficherUtilisateurs(utilisateurs)
+
+                afficherProgressionTaches()
             }
+
         }.start()
     }
 }

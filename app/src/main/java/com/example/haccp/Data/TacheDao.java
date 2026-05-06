@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -27,4 +28,11 @@ public interface TacheDao {
 
     @Query("SELECT * FROM taches WHERE id = :id LIMIT 1")
     TacheEntity getTacheById(int id);
+
+    @Query("DELETE FROM taches WHERE id = :id")
+    void supprimerTacheParId(int id);
+
+    @Update
+    void updateTache(TacheEntity tache);
 }
+

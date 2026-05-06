@@ -45,6 +45,13 @@
         <activity android:name=".ui.DeplacerProduitsCategorieActivity" />
         <activity android:name=".ui.GestionProduitsReferenceActivity" />
         <activity android:name=".ui.OuvrirProduitActivity" />
+        <activity android:name=".ui.GestionTachesActivity" />
+        <activity android:name=".ui.CreationTacheActivity" />
+        <activity android:name=".ui.SupprimerTacheActivity" />
+        <activity android:name=".ui.ModifierTacheActivity" />
+        <activity android:name=".ui.ModifierTacheFormActivity" />
+
+
 
 
 

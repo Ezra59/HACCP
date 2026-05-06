@@ -28,5 +28,17 @@ public class TacheEntity {
     public void setId(int id) {
         this.id = id;
     }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setFrequence(String frequence) {
+        this.frequence = frequence;
+    }
 }
 

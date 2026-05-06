@@ -1,35 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#F2F2F2">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFF0D8">
 
     <LinearLayout
-        android:layout_width="600dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="#D90718"
+        android:gravity="center"
         android:padding="24dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerUtilisateur"
-        android:layout_width="587dp"
-        android:layout_height="800dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/textTitreAccueil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accueil"
+            android:textColor="#FFF0D8"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed" />
 
     </LinearLayout>
 
-    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="32dp"
+        android:gravity="center">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tâches du jour"
+                android:textColor="#D90718"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_marginBottom="24dp" />
+
+            <FrameLayout
+                android:layout_width="240dp"
+                android:layout_height="240dp">
+
+                <ProgressBar
+                    android:id="@+id/progressTaches"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/progress_circle_taches"
+                    android:rotation="-90" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textPourcentageTaches"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0%"
+                        android:textColor="#D90718"
+                        android:textSize="46sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-condensed" />
+
+                    <TextView
+                        android:id="@+id/textProgressionTaches"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 / 0 tâches"
+                        android:textColor="#D90718"
+                        android:textSize="18sp"
+                        android:fontFamily="sans-serif-condensed" />
+
+                    <TextView
+                        android:id="@+id/textTachesRestantes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 restantes"
+                        android:textColor="#333333"
+                        android:textSize="16sp"
+                        android:fontFamily="sans-serif-condensed" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choisir un utilisateur"
+                android:textColor="#D90718"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_marginBottom="24dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerUtilisateur"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -137,8 +137,8 @@ class AdminActivity : AppCompatActivity() {
      * Cette Activity pourra être implémentée plus tard.
      */
     private fun ouvrirGestionRoutine() {
-        Toast.makeText(this, "Gestion des routines à venir", Toast.LENGTH_SHORT).show()
-
+        val intent = Intent(this, GestionTachesActivity::class.java)
+        startActivity(intent)
         // Exemple futur :
         // val intent = Intent(this, GestionRoutineActivity::class.java)
         // startActivity(intent)
