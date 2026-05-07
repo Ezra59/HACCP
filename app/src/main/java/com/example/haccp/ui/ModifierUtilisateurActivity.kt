@@ -50,7 +50,9 @@ class ModifierUtilisateurActivity : AppCompatActivity() {
             applicationContext,
             AppDatabase::class.java,
             "haccp_database"
-        ).fallbackToDestructiveMigration().build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     private fun initialiserVues() {
@@ -62,6 +64,7 @@ class ModifierUtilisateurActivity : AppCompatActivity() {
         texteRetour = findViewById(R.id.textRetour)
 
         val roles = listOf("EMPLOYE", "ADMIN")
+
         spinnerRole.adapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_dropdown_item,
@@ -129,11 +132,59 @@ class ModifierUtilisateurActivity : AppCompatActivity() {
             return
         }
 
-        if (utilisateur.id == idUtilisateurConnecte && utilisateur.role == "ADMIN" && nouveauRole != "ADMIN") {
-            Toast.makeText(this, "Impossible de retirer votre rôle ADMIN", Toast.LENGTH_LONG).show()
+        if (utilisateur.role == "ADMIN" && nouveauRole != "ADMIN") {
+            verifierDernierAdminAvantModification(
+                utilisateur,
+                nouveauPrenom,
+                nouveauPin,
+                nouveauRole
+            )
             return
         }
 
+        enregistrerModification(
+            utilisateur,
+            nouveauPrenom,
+            nouveauPin,
+            nouveauRole
+        )
+    }
+
+    private fun verifierDernierAdminAvantModification(
+        utilisateur: UtilisateurEntity,
+        nouveauPrenom: String,
+        nouveauPin: String,
+        nouveauRole: String
+    ) {
+        Thread {
+            val utilisateurs = database.utilisateurDao().getAllUtilisateurs()
+            val nombreAdmins = utilisateurs.count { it.role == "ADMIN" }
+
+            runOnUiThread {
+                if (nombreAdmins <= 1) {
+                    Toast.makeText(
+                        this,
+                        "Impossible de retirer le rôle du dernier administrateur",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    enregistrerModification(
+                        utilisateur,
+                        nouveauPrenom,
+                        nouveauPin,
+                        nouveauRole
+                    )
+                }
+            }
+        }.start()
+    }
+
+    private fun enregistrerModification(
+        utilisateur: UtilisateurEntity,
+        nouveauPrenom: String,
+        nouveauPin: String,
+        nouveauRole: String
+    ) {
         val utilisateurModifie = UtilisateurEntity(
             nouveauPrenom,
             nouveauPin,

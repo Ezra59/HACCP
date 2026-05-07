@@ -1,64 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layoutAjouterCategorie"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2">
+    android:background="#FFF0D8"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:layout_width="600dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <!-- Retour -->
-        <TextView
-            android:id="@+id/textRetour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Retour"
-            android:textSize="18sp"
-            android:textColor="#333333"
-            android:padding="8dp" />
+        <!-- HEADER -->
 
-        <!-- Titre -->
-        <TextView
-            android:id="@+id/textTitreAjouterCategorie"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ajouter une catégorie"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="#222222"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="32dp" />
-
-        <!-- Champ -->
-        <EditText
-            android:id="@+id/champNomCategorie"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:hint="Nom de la catégorie"
-            android:textSize="20sp"
-            android:background="#FFFFFF"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
+            android:layout_height="90dp"
+            android:background="#D90718"
             android:gravity="center_vertical"
-            android:layout_marginBottom="20dp" />
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
 
-        <!-- Bouton -->
-        <TextView
-            android:id="@+id/btnAjouter"
+            <TextView
+                android:id="@+id/textRetour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="← Retour"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFF0D8"
+                android:fontFamily="sans-serif-condensed" />
+
+            <TextView
+                android:id="@+id/textTitreAjouterCategorie"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Ajouter une catégorie"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#FFF0D8"
+                android:fontFamily="sans-serif-condensed" />
+
+        </LinearLayout>
+
+        <!-- CONTENU -->
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:text="Ajouter la catégorie"
-            android:textSize="20sp"
-            android:textColor="#000000"
-            android:gravity="center"
-            android:background="#FFFFFF" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- CHAMP NOM -->
+
+            <EditText
+                android:id="@+id/champNomCategorie"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:hint="Nom de la catégorie"
+                android:textSize="20sp"
+                android:textColor="#222222"
+                android:textColorHint="#777777"
+                android:background="#FFFFFF"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="28dp" />
+
+            <!-- BOUTON AJOUT -->
+
+            <TextView
+                android:id="@+id/btnAjouter"
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:text="Ajouter la catégorie"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#FFF0D8"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:background="#008F6A" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</FrameLayout>
+</ScrollView>

@@ -1,83 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layoutAjouterUtilisateur"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2">
+    android:background="#FFF0D8"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:layout_width="600dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <!-- Retour -->
-        <TextView
-            android:id="@+id/textRetour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Retour"
-            android:textSize="18sp"
-            android:textColor="#333333"
-            android:padding="8dp" />
+        <!-- HEADER -->
 
-        <!-- Titre -->
-        <TextView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="#D90718"
+            android:gravity="center_vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
+
+            <TextView
+                android:id="@+id/textRetour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="← Retour"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFF0D8"
+                android:fontFamily="sans-serif-condensed" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Ajouter un utilisateur"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#FFF0D8"
+                android:fontFamily="sans-serif-condensed" />
+
+        </LinearLayout>
+
+        <!-- CONTENU -->
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ajouter un utilisateur"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="#222222"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="24dp" />
+            android:orientation="vertical"
+            android:padding="24dp">
 
-        <!-- Prénom -->
-        <EditText
-            android:id="@+id/NomUtilisateur"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:hint="Prénom"
-            android:background="#FFFFFF"
-            android:padding="16dp"
-            android:textSize="18sp"
-            android:layout_marginBottom="14dp" />
+            <!-- PRENOM -->
 
-        <!-- PIN -->
-        <EditText
-            android:id="@+id/PinUtilisateur"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:hint="Code PIN"
-            android:inputType="numberPassword"
-            android:maxLength="6"
-            android:background="#FFFFFF"
-            android:padding="16dp"
-            android:textSize="18sp"
-            android:layout_marginBottom="14dp" />
+            <EditText
+                android:id="@+id/NomUtilisateur"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:hint="Prénom"
+                android:textSize="18sp"
+                android:textColor="#222222"
+                android:textColorHint="#777777"
+                android:background="#E6F4EE"
+                android:padding="16dp"
+                android:layout_marginBottom="18dp" />
 
-        <!-- Spinner -->
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="#FFFFFF"
-            android:padding="10dp"
-            android:layout_marginBottom="24dp" />
+            <!-- PIN -->
 
-        <!-- Bouton -->
-        <TextView
-            android:id="@+id/buttonCreerUtilisateur"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:text="Créer"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:textColor="#000000"
-            android:background="#FFFFFF" />
+            <EditText
+                android:id="@+id/PinUtilisateur"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:hint="Code PIN"
+                android:inputType="numberPassword"
+                android:maxLength="6"
+                android:textSize="18sp"
+                android:textColor="#222222"
+                android:textColorHint="#777777"
+                android:background="#E6F4EE"
+                android:padding="16dp"
+                android:layout_marginBottom="18dp" />
+
+            <!-- SPINNER ROLE -->
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="#E6F4EE"
+                android:padding="10dp"
+                android:layout_marginBottom="28dp" />
+
+            <!-- BOUTON CREATION -->
+
+            <TextView
+                android:id="@+id/buttonCreerUtilisateur"
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:text="Créer"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#FFF0D8"
+                android:fontFamily="sans-serif-condensed"
+                android:background="#008F6A" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</FrameLayout>
+</ScrollView>

@@ -1,79 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layoutHistorique"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2"
-    android:fillViewport="true">
+    android:orientation="vertical"
+    android:background="#FFF0D8">
 
+    <!-- HEADER -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:maxWidth="900dp"
-        android:layout_gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:paddingTop="24dp"
-        android:paddingBottom="24dp">
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#D90718"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <TextView
             android:id="@+id/textRetour"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Retour"
-            android:textSize="18sp"
-            android:textColor="#333333"
-            android:padding="8dp"
-            android:layout_marginBottom="8dp" />
+            android:layout_weight="1"
+            android:text="← Retour"
+            android:textColor="#FFF0D8"
+            android:textStyle="bold"
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/textTitreHistorique"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
             android:text="Historique"
-            android:textSize="26sp"
+            android:textColor="#FFF0D8"
             android:textStyle="bold"
-            android:textColor="#222222"
-            android:layout_marginBottom="20dp" />
+            android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/textCategories"
-            android:layout_width="match_parent"
+        <Space
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Catégories"
-            android:textSize="18sp"
-            android:textColor="#333333"
-            android:layout_marginBottom="8dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerCategories"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="120dp"
-            android:background="#FFFFFF"
-            android:padding="12dp"
-            android:clipToPadding="false"
-            android:nestedScrollingEnabled="false"
-            android:layout_marginBottom="20dp" />
-
-        <TextView
-            android:id="@+id/textProduits"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Produits"
-            android:textSize="18sp"
-            android:textColor="#333333"
-            android:layout_marginBottom="8dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/historiqueProduit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:padding="8dp"
-            android:nestedScrollingEnabled="false" />
+            android:layout_weight="1" />
 
     </LinearLayout>
 
-</ScrollView>
+    <!-- CONTENU -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <!-- BLOC CATÉGORIES -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFF0D8"
+                android:padding="16dp"
+                android:layout_marginBottom="18dp">
+
+                <TextView
+                    android:id="@+id/textCategories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Catégories"
+                    android:textColor="#090A0A"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="12dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerCategories"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="#FFF0D8"
+                    android:nestedScrollingEnabled="false" />
+
+            </LinearLayout>
+
+            <!-- BLOC PRODUITS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFF0D8"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/textProduits"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Produits"
+                    android:textColor="#090A0A"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:layout_marginBottom="12dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/historiqueProduit"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:background="#FFF0D8"
+                    android:nestedScrollingEnabled="false" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

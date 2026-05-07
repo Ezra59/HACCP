@@ -1,7 +1,9 @@
 package com.example.haccp.ui
 
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,36 +13,54 @@ import com.example.haccp.Data.OuvertureProduitEntity
 import com.example.haccp.Data.ProduitReferenceEntity
 import com.example.haccp.R
 import com.example.haccp.adapter.ProduitReferenceAdapter
-
-import androidx.appcompat.app.AlertDialog
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-import android.widget.TextView
-
 class OuvrirProduitActivity : AppCompatActivity() {
 
     private lateinit var recycler: RecyclerView
     private lateinit var database: AppDatabase
+    private lateinit var textRetour: TextView
+
     private var utilisateur: String = "Inconnu"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ouvrir_produit)
 
-        utilisateur = intent.getStringExtra("prenom_utilisateur") ?: "Inconnu"
+        initialiserVues()
+        initialiserListeners()
+        initialiserDatabase()
+        recupererUtilisateur()
+        chargerProduits()
+    }
 
+    private fun initialiserVues() {
+        textRetour = findViewById(R.id.textRetour)
         recycler = findViewById(R.id.recyclerProduitsReference)
+        recycler.layoutManager = LinearLayoutManager(this)
+    }
 
+    private fun initialiserListeners() {
+        textRetour.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun initialiserDatabase() {
         database = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java,
             "haccp_database"
-        ).fallbackToDestructiveMigration().build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
+    }
 
-        chargerProduits()
+    private fun recupererUtilisateur() {
+        utilisateur = intent.getStringExtra("prenom_utilisateur") ?: "Inconnu"
     }
 
     private fun chargerProduits() {
@@ -48,7 +68,6 @@ class OuvrirProduitActivity : AppCompatActivity() {
             val produits = database.produitReferenceDao().getTousLesProduitsReference()
 
             runOnUiThread {
-                recycler.layoutManager = LinearLayoutManager(this)
                 recycler.adapter = ProduitReferenceAdapter(produits) { produit ->
                     ouvrirProduit(produit)
                 }
@@ -57,6 +76,7 @@ class OuvrirProduitActivity : AppCompatActivity() {
     }
 
     private fun ouvrirProduit(produit: ProduitReferenceEntity) {
+
         val dateOuvertureMillis = System.currentTimeMillis()
 
         val calendar = Calendar.getInstance()
@@ -65,16 +85,25 @@ class OuvrirProduitActivity : AppCompatActivity() {
 
         val dateLimiteMillis = calendar.timeInMillis
 
-        val format = SimpleDateFormat("EEEE dd/MM/yyyy", Locale.FRENCH)
+        val formatComplet = SimpleDateFormat("EEEE dd/MM/yyyy", Locale.FRENCH)
+        val formatJour = SimpleDateFormat("EEEE", Locale.FRENCH)
 
-        val dateOuverture = format.format(Date(dateOuvertureMillis))
+        val dateOuverture = formatComplet.format(Date(dateOuvertureMillis))
             .replaceFirstChar { it.uppercase() }
 
-        val dateLimite = format.format(Date(dateLimiteMillis))
+        val dateLimite = formatComplet.format(Date(dateLimiteMillis))
             .replaceFirstChar { it.uppercase() }
 
-        val vueEtiquette = layoutInflater.inflate(R.layout.dialog_etiquette_ouverture, null)
+        // JOUR DE PÉREMPTION
+        val jourLimite = formatJour.format(Date(dateLimiteMillis))
+            .uppercase(Locale.FRENCH)
 
+        val vueEtiquette = layoutInflater.inflate(
+            R.layout.dialog_etiquette_ouverture,
+            null
+        )
+
+        val textJour = vueEtiquette.findViewById<TextView>(R.id.textJourEtiquette)
         val textProduit = vueEtiquette.findViewById<TextView>(R.id.textProduitEtiquette)
         val textCategorie = vueEtiquette.findViewById<TextView>(R.id.textCategorieEtiquette)
         val textDateOuverture = vueEtiquette.findViewById<TextView>(R.id.textDateOuvertureEtiquette)
@@ -82,6 +111,7 @@ class OuvrirProduitActivity : AppCompatActivity() {
         val textDuree = vueEtiquette.findViewById<TextView>(R.id.textDureeEtiquette)
         val textUtilisateur = vueEtiquette.findViewById<TextView>(R.id.textUtilisateurEtiquette)
 
+        textJour.text = jourLimite
         textProduit.text = "Produit : ${produit.nom}"
         textCategorie.text = "Catégorie : ${produit.categorie}"
         textDateOuverture.text = "Ouvert le : $dateOuverture"
@@ -93,6 +123,7 @@ class OuvrirProduitActivity : AppCompatActivity() {
             .setView(vueEtiquette)
             .setNegativeButton("Annuler", null)
             .setPositiveButton("Valider") { _, _ ->
+
                 val ouverture = OuvertureProduitEntity(
                     produit.nom,
                     produit.categorie,
@@ -108,13 +139,19 @@ class OuvrirProduitActivity : AppCompatActivity() {
             .show()
     }
 
-
     private fun enregistrerOuverture(ouverture: OuvertureProduitEntity) {
+
         Thread {
+
             database.ouvertureProduitDao().insert(ouverture)
 
             runOnUiThread {
-                Toast.makeText(this, "Produit ouvert avec succès", Toast.LENGTH_SHORT).show()
+
+                Toast.makeText(
+                    this,
+                    "Produit ouvert avec succès",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }.start()
     }

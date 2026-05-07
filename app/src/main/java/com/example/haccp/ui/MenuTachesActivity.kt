@@ -24,6 +24,7 @@ class MenuTachesActivity : AppCompatActivity() {
 
     private lateinit var prenomUtilisateur: String
     private lateinit var roleUtilisateur: String
+    private lateinit var btnTacheHaccp: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +52,7 @@ class MenuTachesActivity : AppCompatActivity() {
         boutonHistorique = findViewById(R.id.btnHistorique)
         boutonAdmin = findViewById(R.id.btnAdmin)
         boutonDeconnexion = findViewById(R.id.buttonDeconnexion)
+        btnTacheHaccp = findViewById(R.id.btnTachesHaccp)
     }
 
     private fun afficherInformationsUtilisateur() {
@@ -90,6 +92,9 @@ class MenuTachesActivity : AppCompatActivity() {
         boutonAdmin.setOnClickListener {
             ouvrirAdmin()
         }
+        btnTacheHaccp.setOnClickListener {
+            ouvrirtache()
+        }
     }
 
     private fun deconnexion() {
@@ -125,6 +130,11 @@ class MenuTachesActivity : AppCompatActivity() {
         intent.putExtra("prenom_utilisateur", prenomUtilisateur)
         intent.putExtra("role_utilisateur", roleUtilisateur)
         Toast.makeText(this, "Role envoyé : $roleUtilisateur", Toast.LENGTH_SHORT).show()
+        startActivity(intent)
+    }
+
+    private fun ouvrirtache(){
+        val intent = Intent(this, TachesEmployeActivity::class.java)
         startActivity(intent)
     }
 }

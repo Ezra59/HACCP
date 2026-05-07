@@ -1,80 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2"
+    android:background="#FFF0D8"
     android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxWidth="700dp"
         android:layout_gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingStart="24dp"
-        android:paddingEnd="24dp"
-        android:paddingTop="24dp"
-        android:paddingBottom="32dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textRetour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Retour"
-            android:textSize="18sp"
-            android:textColor="#333333"
-            android:padding="8dp"
-            android:layout_marginBottom="8dp" />
+        <!-- HEADER -->
 
-        <TextView
-            android:id="@+id/textTitreGestionProduitsOuverture"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="#D90718"
+            android:gravity="center_vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
+
+            <TextView
+                android:id="@+id/textRetour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="← Retour"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#FFF0D8"
+                android:fontFamily="sans-serif-condensed" />
+
+            <TextView
+                android:id="@+id/textTitreGestionProduitsOuverture"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Gestion des produits (ouverture)"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#FFF0D8"
+                android:fontFamily="sans-serif-condensed" />
+
+        </LinearLayout>
+
+        <!-- CONTENU -->
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gestion des produits (ouverture)"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#222222"
-            android:layout_marginBottom="20dp" />
+            android:orientation="vertical"
+            android:padding="24dp">
 
-        <EditText
-            android:id="@+id/editNomProduit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nom du produit"
-            android:minHeight="48dp"
-            android:padding="12dp" />
+            <!-- NOM PRODUIT -->
 
-        <Spinner
-            android:id="@+id/spinnerCategorie"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:layout_marginTop="12dp" />
+            <EditText
+                android:id="@+id/editNomProduit"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:hint="Nom du produit"
+                android:textSize="18sp"
+                android:textColor="#222222"
+                android:textColorHint="#777777"
+                android:background="#E6F4EE"
+                android:padding="16dp"
+                android:layout_marginBottom="18dp" />
 
-        <EditText
-            android:id="@+id/editDuree"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Durée après ouverture (jours)"
-            android:inputType="number"
-            android:minHeight="48dp"
-            android:padding="12dp"
-            android:layout_marginTop="12dp" />
+            <!-- SPINNER -->
 
-        <Button
-            android:id="@+id/btnAjouter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ajouter"
-            android:minHeight="50dp"
-            android:layout_marginTop="16dp" />
+            <Spinner
+                android:id="@+id/spinnerCategorie"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="#E6F4EE"
+                android:padding="10dp"
+                android:layout_marginBottom="18dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerProduits"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            android:layout_marginTop="20dp" />
+            <!-- DUREE -->
+
+            <EditText
+                android:id="@+id/editDuree"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:hint="Durée après ouverture (jours)"
+                android:inputType="number"
+                android:textSize="18sp"
+                android:textColor="#222222"
+                android:textColorHint="#777777"
+                android:background="#E6F4EE"
+                android:padding="16dp"
+                android:layout_marginBottom="24dp" />
+
+            <!-- BOUTON -->
+
+            <Button
+                android:id="@+id/btnAjouter"
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:text="Ajouter"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#FFF0D8"
+                android:fontFamily="sans-serif-condensed"
+                android:backgroundTint="#008F6A"
+                android:layout_marginBottom="28dp" />
+
+            <!-- RECYCLER -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerProduits"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -30,6 +30,8 @@ public interface ExecutionTacheDao {
     @Query("SELECT * FROM execution_taches WHERE tacheId = :tacheId ORDER BY timestampExecution DESC")
     List<ExecutionTacheEntity> getExecutionsParTacheTrie(int tacheId);
 
+    @Query("SELECT * FROM execution_taches WHERE timestampExecution BETWEEN :debutJour AND :finJour")
+    List<ExecutionTacheEntity> getExecutionsDuJour(long debutJour, long finJour);
 
 
 

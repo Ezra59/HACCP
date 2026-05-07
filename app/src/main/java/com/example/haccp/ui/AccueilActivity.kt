@@ -103,13 +103,27 @@ class AccueilActivity : AppCompatActivity() {
      * Affiche les statistiques des tâches HACCP.
      */
     private fun afficherProgressionTaches() {
-
         Thread {
+            val calendrierDebut = java.util.Calendar.getInstance()
+            calendrierDebut.set(java.util.Calendar.HOUR_OF_DAY, 0)
+            calendrierDebut.set(java.util.Calendar.MINUTE, 0)
+            calendrierDebut.set(java.util.Calendar.SECOND, 0)
+            calendrierDebut.set(java.util.Calendar.MILLISECOND, 0)
+
+            val debutJour = calendrierDebut.timeInMillis
+
+            val calendrierFin = java.util.Calendar.getInstance()
+            calendrierFin.set(java.util.Calendar.HOUR_OF_DAY, 23)
+            calendrierFin.set(java.util.Calendar.MINUTE, 59)
+            calendrierFin.set(java.util.Calendar.SECOND, 59)
+            calendrierFin.set(java.util.Calendar.MILLISECOND, 999)
+
+            val finJour = calendrierFin.timeInMillis
 
             val total = database.tacheDao().getAllTaches().size
-
-            // Temporaire : aucune tâche réalisée pour l'instant
-            val realisees = 0
+            val realisees = database.executionTacheDao()
+                .getExecutionsDuJour(debutJour, finJour)
+                .size
 
             val restantes = total - realisees
 
@@ -120,18 +134,11 @@ class AccueilActivity : AppCompatActivity() {
             }
 
             runOnUiThread {
-
                 progressTaches.progress = pourcentage
-
                 textPourcentageTaches.text = "$pourcentage%"
-
-                textProgressionTaches.text =
-                    "$realisees / $total tâches"
-
-                textTachesRestantes.text =
-                    "$restantes restantes"
+                textProgressionTaches.text = "$realisees / $total tâches"
+                textTachesRestantes.text = "$restantes restantes"
             }
-
         }.start()
     }
 
@@ -159,5 +166,13 @@ class AccueilActivity : AppCompatActivity() {
             }
 
         }.start()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if (::database.isInitialized) {
+            afficherProgressionTaches()
+        }
     }
 }

@@ -50,6 +50,7 @@
         <activity android:name=".ui.SupprimerTacheActivity" />
         <activity android:name=".ui.ModifierTacheActivity" />
         <activity android:name=".ui.ModifierTacheFormActivity" />
+        <activity android:name=".ui.TachesEmployeActivity" />
 
 
 
